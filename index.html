@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#f7b9d8">
+<title>Sunflower Niki | Novel Library</title>
+<style>
+  :root{
+    --pink:#f7b9d8; --pink2:#f48bc3; --hot:#ed69ae; --pale:#ffe0ef;
+    --black:#080609; --ink:#170d16; --white:#fff7fb; --muted:#d9b5ca;
+    --line:#f6a9d0; --shadow:0 0 16px rgba(255,130,195,.24);
+  }
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{
+    margin:0; color:var(--white); background:#080609;
+    font-family:Arial,Helvetica,sans-serif;
+    background-image:
+      radial-gradient(circle at 15% 10%,rgba(255,105,180,.12),transparent 25%),
+      radial-gradient(circle at 90% 70%,rgba(255,105,180,.10),transparent 25%);
+  }
+  a{color:inherit;text-decoration:none}
+  button,input{font:inherit}
+  .outer{
+    max-width:1120px;margin:0 auto;min-height:100vh;
+    border-left:2px solid #f7a6d0;border-right:2px solid #f7a6d0;
+    background:#050405;position:relative;overflow:hidden;
+  }
+  .outer:before,.outer:after{
+    content:"♡ ✧ ♡ ✦ ♡ ✧ ♡";position:fixed;top:0;bottom:0;width:max(4vw,22px);
+    display:flex;align-items:center;justify-content:center;writing-mode:vertical-rl;
+    letter-spacing:13px;font-size:23px;color:#fff;opacity:.9;pointer-events:none;z-index:-1;
+    background:repeating-linear-gradient(135deg,#27101f 0 7px,#e96aaa 8px 11px,#180c18 13px 19px);
+    text-shadow:0 0 7px #ff9bd1;
+  }
+  .outer:before{left:0}.outer:after{right:0}
+  .wrap{padding:0 18px 26px}
+  .masthead{
+    min-height:150px;display:flex;flex-direction:column;align-items:center;justify-content:center;
+    text-align:center;padding:20px 12px 14px;position:relative;
+    background:linear-gradient(180deg,#050405,#120812);
+    border-bottom:5px solid var(--pink);
+  }
+  .masthead:before,.masthead:after{content:"♡";position:absolute;color:#ff9ccc;font-size:54px;text-shadow:0 0 12px #ff5fb4;top:28px}
+  .masthead:before{left:6%}.masthead:after{right:6%}
+  .brand{font-family:"Brush Script MT","Segoe Script",cursive;font-size:clamp(42px,7vw,76px);font-style:italic;
+    color:#ffb3d8;text-shadow:0 0 5px #fff,0 0 13px #ff4fae,0 0 25px #f04ba4;line-height:1.05}
+  .sunflower{font-family:Arial,sans-serif;font-style:normal;font-size:.72em}
+  .tagline{margin-top:10px;color:#ffd7e9;letter-spacing:2px;font-size:13px}
+  nav{display:flex;justify-content:center;gap:0;flex-wrap:wrap;background:var(--pink);color:#160b13}
+  nav a{padding:13px 22px;font-weight:700;font-size:13px;border-right:1px solid rgba(0,0,0,.12)}
+  nav a:hover{background:#f28ac0}
+  .columns{display:grid;grid-template-columns:1fr 1.08fr;gap:18px;padding-top:18px}
+  .panel{background:var(--pink);color:#160b13;border:2px solid #ffcae3;border-radius:9px;overflow:hidden;box-shadow:var(--shadow)}
+  .panel-title{font-weight:800;padding:10px 13px;border-bottom:1px solid #e78fba;font-size:17px}
+  .panel-body{padding:12px}
+  .feature{background:#050405;color:#fff;text-align:center;padding:0 5px 16px}
+  .feature img{width:100%;height:265px;object-fit:cover;border:3px solid var(--pink);border-radius:9px}
+  .feature h2{font-family:Georgia,serif;color:#ff9ccc;font-size:25px;margin:12px 0 7px}
+  .feature p{color:#f8dce9;line-height:1.6;font-size:14px;margin:0 auto 14px;max-width:440px}
+  .pill-btn{display:inline-block;background:linear-gradient(90deg,#f7a0ce,#e96db0);color:#170b13;
+    border:0;border-radius:30px;padding:12px 25px;font-weight:800;cursor:pointer;box-shadow:0 3px 10px #0005}
+  .pill-btn:hover{filter:brightness(1.08);transform:translateY(-1px)}
+  .login{background:#050405;color:#fff}
+  .login .panel-title{background:var(--pink);color:#160b13}
+  .login-form{padding:14px;display:grid;gap:10px}
+  .login-form label{font-size:13px;color:#ffe1ef}
+  .login-form input{width:100%;padding:11px 12px;border:2px solid #f4b6d4;background:#100b10;color:white;border-radius:5px;outline:none}
+  .login-form input:focus{border-color:#ff69b4;box-shadow:0 0 8px #ff69b477}
+  .login-form button{margin-top:3px}
+  .banner{margin-top:14px;background:#080b19;border:3px solid var(--pink);border-radius:9px;min-height:190px;
+    display:flex;align-items:center;justify-content:center;text-align:center;overflow:hidden;position:relative;
+    background-image:linear-gradient(120deg,rgba(8,7,22,.2),rgba(8,7,22,.8)),url('https://images.unsplash.com/photo-1490730141103-6cac27aaab94?auto=format&fit=crop&w=1000&q=85');
+    background-size:cover;background-position:center}
+  .banner-text{font-family:"Brush Script MT","Segoe Script",cursive;font-size:clamp(26px,4vw,42px);font-style:italic;color:#fff0fa;text-shadow:0 0 10px #ff69b4;padding:20px}
+  .music{margin-top:14px;background:#f6d9e7;color:#160b13;border-radius:9px;padding:12px;display:flex;align-items:center;gap:12px}
+  .music button{border:0;border-radius:50%;width:48px;height:48px;background:#f27db7;color:#fff;font-size:18px;cursor:pointer}
+  .wave{height:28px;flex:1;display:flex;align-items:center;gap:3px}
+  .wave i{display:block;width:3px;border-radius:4px;background:#1b1520;height:var(--h)}
+  .music small{white-space:nowrap}
+  .vibes{margin-top:14px;border:3px solid var(--pink);border-radius:9px;overflow:hidden;min-height:210px;
+    display:flex;align-items:center;justify-content:center;text-align:center;
+    background:linear-gradient(135deg,#54a7ed,#a9caff 45%,#f8a8d1)}
+  .vibes-inner{font-size:34px;font-weight:900;color:#fff;text-shadow:2px 3px #d7479b,0 0 10px #ff3ca3;padding:25px}
+  .vibes-inner span{display:block;font-size:65px;line-height:1.1}
+  .book-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
+  .book-card{text-align:center;min-width:0}
+  .cover{height:165px;border-radius:6px;border:2px solid #fff1f8;background-size:cover;background-position:center;box-shadow:0 3px 8px #5a1d4050}
+  .cover.one{background-image:linear-gradient(180deg,#eeb3d0aa,#49334d55),url('https://images.unsplash.com/photo-1470252649378-9c29740c9fa8?auto=format&fit=crop&w=500&q=80')}
+  .cover.two{background-image:linear-gradient(180deg,#0d244055,#07132699),url('https://images.unsplash.com/photo-1519608487953-e999c86e7455?auto=format&fit=crop&w=500&q=80')}
+  .cover.three{background-image:linear-gradient(180deg,#17152b22,#15122b55),url('https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&fit=crop&w=500&q=80')}
+  .book-card h4{font-size:12px;margin:8px 0 5px;line-height:1.35}
+  .genre{display:inline-block;background:#f08bbd;border-radius:20px;padding:5px 12px;font-size:11px;font-weight:700}
+  .updates{list-style:none;margin:0;padding:0}
+  .updates li{display:flex;gap:8px;align-items:center;padding:10px 4px;border-bottom:1px solid #e69abc;font-size:13px}
+  .updates li:last-child{border:0}
+  .updates .star{color:#d84994;font-size:17px}
+  .updates .date{margin-left:auto;white-space:nowrap;font-size:11px}
+  .search-row{display:flex;gap:10px;margin-top:16px;align-items:center}
+  .search{flex:1;min-width:0;border:2px solid #f4b4d2;border-radius:28px;padding:13px 17px;background:#ffe3f0;color:#170b13;outline:none}
+  .filters{display:flex;gap:7px;flex-wrap:wrap}
+  .filter{border:0;background:#ffd8e9;color:#170b13;border-radius:22px;padding:11px 14px;font-weight:700;cursor:pointer}
+  .filter.active,.filter:hover{background:#ee83b9}
+  .footer{text-align:center;color:#ffb3d7;font-family:Georgia,serif;font-style:italic;padding:25px 5px 5px;letter-spacing:1px}
+  .footer:before,.footer:after{content:"";display:inline-block;width:15%;height:1px;background:#f5a4cd;vertical-align:middle;margin:0 15px}
+  .hidden{display:none!important}
+  @media(max-width:720px){
+    .wrap{padding:0 10px 20px}.columns{grid-template-columns:1fr;gap:14px}
+    .masthead{min-height:125px}.masthead:before,.masthead:after{font-size:34px;top:18px}
+    nav a{padding:11px 12px;font-size:12px}.feature img{height:230px}
+    .book-grid{gap:8px}.cover{height:145px}.search-row{flex-direction:column;align-items:stretch}
+    .filters{justify-content:center}.footer:before,.footer:after{width:8%;margin:0 7px}
+  }
+</style>
+</head>
+<body>
+<div class="outer">
+  <div class="wrap">
+    <header class="masthead">
+      <div class="brand">Sunflower Niki <span class="sunflower">🌻</span></div>
+      <div class="tagline">A little corner for stories, dreams & daydreams</div>
+    </header>
+    <nav>
+      <a href="#home">⌂ &nbsp; Home</a>
+      <a href="#library">▣ &nbsp; My Library</a>
+      <a href="#genres">▦ &nbsp; Genres</a>
+      <a href="#updates">★ &nbsp; Updates</a>
+    </nav>
+
+    <main class="columns" id="home">
+      <section>
+        <div class="feature">
+          <img src="https://images.unsplash.com/photo-1518709268805-4e9042af9f23?auto=format&fit=crop&w=900&q=85" alt="Featured story artwork">
+          <h2>✿ Lost in Your Spring ✿</h2>
+          <p>Some stories feel like a warm spring afternoon. Find your next favourite story and stay a little longer.</p>
+          <a class="pill-btn" href="#library">▣ &nbsp; Start Reading &nbsp; ›</a>
+        </div>
+
+        <section class="panel" style="margin-top:14px" id="library">
+          <div class="panel-title">▣ &nbsp; Continue Reading</div>
+          <div class="panel-body" style="display:flex;gap:12px;align-items:center">
+            <div class="cover one" style="width:82px;height:105px;flex:none"></div>
+            <div style="flex:1">
+              <strong>Lost in Your Spring</strong>
+              <p style="font-size:12px;margin:7px 0">Chapter 12 · 65% completed</p>
+              <div style="height:7px;background:#f6c6dc;border-radius:10px;overflow:hidden"><div style="width:65%;height:100%;background:#e96eae"></div></div>
+            </div>
+            <a class="pill-btn" href="#library" style="padding:10px 13px;font-size:12px">Read ›</a>
+          </div>
+        </section>
+
+        <div class="music">
+          <button id="playBtn" aria-label="Play music">▶</button>
+          <div class="wave" aria-hidden="true">
+            <i style="--h:9px"></i><i style="--h:18px"></i><i style="--h:13px"></i><i style="--h:24px"></i><i style="--h:11px"></i><i style="--h:20px"></i><i style="--h:15px"></i><i style="--h:26px"></i><i style="--h:10px"></i><i style="--h:18px"></i><i style="--h:12px"></i><i style="--h:22px"></i><i style="--h:8px"></i><i style="--h:17px"></i><i style="--h:12px"></i><i style="--h:21px"></i><i style="--h:9px"></i><i style="--h:16px"></i>
+          </div>
+          <small id="musicStatus">Music paused</small>
+          <span>♫</span>
+        </div>
+
+        <div class="vibes">
+          <div class="vibes-inner">Good Vibes Only <span>😎</span>♡</div>
+        </div>
+      </section>
+
+      <section>
+        <section class="panel login">
+          <div class="panel-title">♟ &nbsp; Member Login ♥</div>
+          <form class="login-form" id="loginForm">
+            <label for="email">✉ &nbsp; Email Address</label>
+            <input id="email" type="email" placeholder="you@example.com" autocomplete="email">
+            <label for="password">♙ &nbsp; Password</label>
+            <input id="password" type="password" placeholder="Enter your password" autocomplete="current-password">
+            <button class="pill-btn" type="submit">↪ &nbsp; Sign In</button>
+            <div id="loginMessage" style="font-size:12px;color:#ffd6e8;text-align:center" aria-live="polite">Welcome back, story lover!</div>
+          </form>
+        </section>
+
+        <div class="banner">
+          <div class="banner-text">Read · Relax · Repeat<br>♡ ───────── ♡</div>
+        </div>
+
+        <section class="panel" style="margin-top:14px" id="genres">
+          <div class="panel-title">♛ &nbsp; Popular Stories</div>
+          <div class="panel-body">
+            <div class="book-grid">
+              <article class="book-card" data-genre="Romance">
+                <div class="cover one"></div><h4>Lost in Your Spring</h4><span class="genre">Romance</span>
+              </article>
+              <article class="book-card" data-genre="BL">
+                <div class="cover two"></div><h4>Secrets of the Night</h4><span class="genre">BL</span>
+              </article>
+              <article class="book-card" data-genre="GL">
+                <div class="cover three"></div><h4>Under the Moonlight</h4><span class="genre">GL</span>
+              </article>
+            </div>
+          </div>
+        </section>
+
+        <section class="panel" style="margin-top:14px" id="updates">
+          <div class="panel-title">★ &nbsp; Latest Chapter Updates</div>
+          <ul class="updates">
+            <li><span class="star">✿</span><span>Lost in Your Spring — Chapter 12</span><span class="date">Nov 2</span></li>
+            <li><span class="star">✿</span><span>Secrets of the Night — Chapter 08</span><span class="date">Nov 1</span></li>
+            <li><span class="star">✿</span><span>Under the Moonlight — Chapter 06</span><span class="date">Oct 30</span></li>
+          </ul>
+        </section>
+      </section>
+    </main>
+
+    <div class="search-row">
+      <input class="search" id="searchInput" type="search" placeholder="⌕  Search for a story...">
+      <div class="filters">
+        <button class="filter active" data-filter="All">All</button>
+        <button class="filter" data-filter="BL">BL</button>
+        <button class="filter" data-filter="GL">GL</button>
+        <button class="filter" data-filter="Romance">Romance</button>
+        <button class="filter" data-filter="Fantasy">Fantasy</button>
+      </div>
+    </div>
+
+    <footer class="footer">♡ &nbsp; Made with love for every story lover &nbsp; ♡</footer>
+  </div>
+</div>
+<script>
+  const filters = document.querySelectorAll('.filter');
+  const books = document.querySelectorAll('.book-card');
+  const searchInput = document.getElementById('searchInput');
+  let activeGenre = 'All';
+
+  function updateBooks(){
+    const query = searchInput.value.trim().toLowerCase();
+    books.forEach(book => {
+      const title = book.querySelector('h4').textContent.toLowerCase();
+      const genre = book.dataset.genre;
+      const matchesGenre = activeGenre === 'All' || genre === activeGenre;
+      const matchesSearch = title.includes(query) || genre.toLowerCase().includes(query);
+      book.classList.toggle('hidden', !(matchesGenre && matchesSearch));
+    });
+  }
+  filters.forEach(button => button.addEventListener('click', () => {
+    filters.forEach(item => item.classList.remove('active'));
+    button.classList.add('active');
+    activeGenre = button.dataset.filter;
+    updateBooks();
+  }));
+  searchInput.addEventListener('input', updateBooks);
+
+  document.getElementById('loginForm').addEventListener('submit', event => {
+    event.preventDefault();
+    document.getElementById('loginMessage').textContent =
+      'This is a design preview. Connect your authentication service to enable sign in.';
+  });
+
+  let playing = false;
+  document.getElementById('playBtn').addEventListener('click', () => {
+    playing = !playing;
+    document.getElementById('playBtn').textContent = playing ? 'Ⅱ' : '▶';
+    document.getElementById('musicStatus').textContent = playing ? 'Music player demo' : 'Music paused';
+  });
+</script>
+</body>
+</html>
